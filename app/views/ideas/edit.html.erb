@@ -1,0 +1,10 @@
+<h1>Edit Idea</h1>
+
+<%= simple_form_for @idea do |f| %>
+  <%= f.input :title, label: "Title" %>
+  <%= f.input :content, label: "Idea"%>
+  <%= f.submit %>
+  <% end %>
+
+<%= link_to 'Back', root_path %>
+<%= link_to 'Edit', edit_idea_path %>
