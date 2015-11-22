@@ -1,0 +1,7 @@
+<%= simple_form_for([@idea, @idea.comments.build]) do |f| %>
+  <%= f.input :body, label: "Comment" %>
+  <p>
+  <%= f.button :submit, :class => "btn-custom" %>
+
+  </p>
+  <% end %>

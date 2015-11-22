@@ -16,8 +16,12 @@
   <li><%= link_to "Sign Up", new_user_registration_path %></li>
   <li><%= link_to "Log In", new_user_session_path %></li>
 <% end %>
+
+  <div class="container" align="right"> <%= link_to 'New Idea', new_idea_path %></div>
+
   <p class="notice"><%= notice %></p>
   <p class="alert"><%= alert %></p>
+
 <%= yield %>
 
 </body>

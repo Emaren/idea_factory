@@ -1,5 +1,6 @@
 <% @ideas.each do |idea| %><hr>
   <h3><%= link_to idea.title, idea_path(idea) %></h3>
   <p><%= idea.content %></p>
+  <p>By: <%= idea.user.email %></p>
   <% end %>
 <hr>
