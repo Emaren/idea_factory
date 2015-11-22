@@ -3,11 +3,24 @@
 <h1><%= @idea.title %></h1>
 <p><%= @idea.content %><p>
 
-<%= render @idea.comments %>
+<% if user_signed_in? && @idea.liked_by?(current_user) %>
+ <%= link_to fa_icon("thumbs-up"), idea_like_path(@idea, @idea.like_for(current_user)),
+               method: :delete, class: "icon-big" %>
+ <% else %>
+ <%= link_to fa_icon("thumbs-o-up"), idea_likes_path(@idea), class: "icon-big",
+                 method: :post %>
+ <% end %>
+ <%= pluralize(@idea.likes.count, "like") %>
+
+
+  <%= render @idea.comments %>
 
 
 <h3>Comments: </h3>
+
+
   <%= render 'comments/form' %>
+
 
 <%= link_to 'Back', root_path %>
 

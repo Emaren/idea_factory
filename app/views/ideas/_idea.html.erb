@@ -2,5 +2,8 @@
   <h3><%= link_to idea.title, idea_path(idea) %></h3>
   <p><%= idea.content %></p>
   <p>By: <%= idea.user.email %></p>
+  <p>ID: <%= idea.id %></p>
+  <%= link_to fa_icon("thumbs-o-up"), idea_likes_path([:idea_id]), class: "icon-big",
+                  method: :post %>
   <% end %>
 <hr>
