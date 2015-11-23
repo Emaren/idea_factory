@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  joined: false
+  user_id: 
+  idea_id: 
+
+two:
+  joined: false
+  user_id: 
+  idea_id: 

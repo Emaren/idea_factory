@@ -17,7 +17,7 @@ class LikesController < ApplicationController
 
   def destroy
 
-    idea = Idea.find params[:id]
+    idea = Idea.find params[:idea_id]
     like = current_user.likes.find params[:id]
     like.destroy
     redirect_to idea_path(idea)
