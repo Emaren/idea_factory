@@ -2,7 +2,12 @@
 
     <h1><%= @idea.title %></h1>
     <p><%= @idea.content %><p>
+<div class="container" align="right">
 
+  <%= image_tag @idea.idea_img.url(:medium) %>
+
+
+</div>
 
     <div class="container">
       <% if user_signed_in? && @idea.joined_by?(current_user) %>

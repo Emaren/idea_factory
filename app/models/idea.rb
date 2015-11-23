@@ -11,6 +11,9 @@ class Idea < ActiveRecord::Base
                       uniqueness: { message: "Title currently exists"},
                       length:     { minimum: 1}}
 
+  has_attached_file :idea_img, styles: { medium: "300x300>", thumb: "100x100>" }, default_url: "/images/:style/missing.png"
+  validates_attachment_content_type :idea_img, content_type: /\Aimage\/.*\Z/
+
 
   def liked_by?(user)
     like_for(user).present?

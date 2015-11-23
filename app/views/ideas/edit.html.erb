@@ -1,6 +1,7 @@
 <h1>Edit Idea</h1>
 
-<%= simple_form_for @idea do |f| %>
+<%= simple_form_for @idea, url: idea_path do |f| %>
+  <%= f.input :idea_img, as: :file %>
   <%= f.input :title, label: "Title" %>
   <%= f.input :content, label: "Idea"%>
   <%= f.submit %>
