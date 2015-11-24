@@ -1,15 +1,20 @@
+  <div class="container" id="showi">
+    &nbsp; <%= image_tag @idea.idea_img.url(:medium) %></div>
+
+<%= render 'idea_img' %>
+
+  <div class="row">
+
+    <div class="col-md-7">
+
+      <h1><%= @idea.title %></h1><br>
+
+        <div align="justify"><%= @idea.content %></div>
+<br>
 
 
-    <h1><%= @idea.title %></h1>
-    <p><%= @idea.content %><p>
-<div class="container" align="right">
 
-  <%= image_tag @idea.idea_img.url(:medium) %>
-
-
-</div>
-
-    <div class="container">
+        <div>
       <% if user_signed_in? && @idea.joined_by?(current_user) %>
         <%= link_to "<i class='fa fa-users'></i>".html_safe, idea_join_path(@idea, @idea.join_for(current_user)),
                    method: :delete, class: "icon-big" %>
@@ -20,34 +25,48 @@
       <% end %>
 
         <%= pluralize(@idea.joins.count, "Member") %>
-   (<% @idea.joins.each do |join| %>
-    <%= join.user_id %>,
-    <% end %>)
+
+        (<% @idea.joins.each do |join| %>
+        <%= join.user_id %>,
+        <% end %>)
         </div>
 
-
-      <% if user_signed_in? && @idea.liked_by?(current_user) %>
-        <%= link_to fa_icon("thumbs-up"), idea_like_path(@idea, @idea.like_for(current_user)),
+        <div>
+          <% if user_signed_in? && @idea.liked_by?(current_user) %>
+            <%= link_to fa_icon("thumbs-up"), idea_like_path(@idea, @idea.like_for(current_user)),
                    method: :delete, class: "icon-big" %>
-      <% else %>
-        <%= link_to fa_icon("thumbs-o-up"), idea_likes_path(@idea), class: "icon-big",
-                     method: :post %>
+                   <% else %>
+                   <%= link_to fa_icon("thumbs-o-up"), idea_likes_path(@idea), class: "icon-big",
+                     method: :post, remote: true %>
+                     <% end %>
+                     <%= pluralize(@idea.likes.count, "like") %></div><br><br>
+
+        <div>
+          <% if current_user.id == @idea.user_id %>
+            <%= link_to 'Edit', edit_idea_path %>
+            <%= link_to 'Delete', idea_path(@idea), method: :delete, data: { confirm: "Confirm Deletion?"} %>
+            <% end %></div>
+
+
+
+
+<div class="container" align="center">
+
+  <h3>Comments: </h3>
+
+    <%= render 'comments/form' %>
+  </div>
+
+  <div id="comments">
+    <% @idea.comments.each do |c| %>
+      <%= render "comments/comment", comment: c %>
       <% end %>
-        <%= pluralize(@idea.likes.count, "like") %>
 
-        <%= render @idea.comments %>
+  </div>
 
-
-<h3>Comments: </h3>
-
-
-  <%= render 'comments/form' %>
+  </div>
 
 
 <%= link_to 'Back', root_path %>
-
-  <% if current_user.id == @idea.user_id %>
-<%= link_to 'Edit', edit_idea_path %>
-<%= link_to 'Delete', idea_path(@idea), method: :delete, data: { confirm: "Confirm Deletion?"} %>
-
-<% end %>
+</div>
+</div>

@@ -1,4 +1,4 @@
-<%= simple_form_for([@idea, @idea.comments.build]) do |f| %>
+<%= simple_form_for [@idea, @idea.comments.build], remote: true do |f| %>
   <%= f.input :body, label: "Comment" %>
   <p>
   <%= f.button :submit, :class => "btn-custom" %>

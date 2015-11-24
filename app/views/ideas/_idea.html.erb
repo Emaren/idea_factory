@@ -6,7 +6,7 @@
   <p><%= idea.content %></p>
   <p>By: <%= idea.user.email %></p>
   <p>ID: <%= idea.id %></p>
-  <%= link_to fa_icon("thumbs-o-up"), idea_likes_path([:idea_id]), class: "icon-big",
-                  method: :post %>
+  <%= link_to fa_icon('thumbs-o-up'), idea_path(idea) %>
+
   <% end %>
 <hr>

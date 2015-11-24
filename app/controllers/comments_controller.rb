@@ -9,11 +9,16 @@ class CommentsController < ApplicationController
     @comment = @idea.comments.create(comment_params)
     @comment.user_id = current_user.id
 
+    respond_to do |format|
+
     if @comment.save
-      redirect_to idea_path(@idea)
+      format.html {redirect_to idea_path(@idea)}
+      format.js { render :create_success }
     else
-      render 'new'
+      format.html { render 'ideas/show' }
+      format.js { render :create_failure }
     end
+  end
   end
 
   def edit
@@ -29,8 +34,14 @@ class CommentsController < ApplicationController
   end
 
   def destroy
-     @comment.destroy
-    redirect_to idea_path(@idea)
+    @comment = Comment.find params[:id]
+
+    @comment.destroy
+    respond_to do |format|
+      format.html { redirect_to product_path(@comment.idea) }
+      format.js   { render }
+    end
+
   end
 
   private

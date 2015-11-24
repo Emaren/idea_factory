@@ -8,11 +8,16 @@ class LikesController < ApplicationController
     idea = Idea.find params[:idea_id]
     like.idea = idea
     like.user = current_user
+    respond_to do |format|
+
     if like.save
-      redirect_to idea_path(idea), notice: "Liked!"
+      format.html {redirect_to idea_path(@idea)}
+      format.js { render :create_success }
     else
-      redirect_to idea_path(idea), alert: "Already Liked!"
+      format.html { render 'new' }
+      format.js { render :create_failure }
     end
+  end
   end
 
   def destroy

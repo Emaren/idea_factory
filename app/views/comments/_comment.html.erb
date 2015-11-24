@@ -1,9 +1,12 @@
-<hr>
-<sup><i>Posted by <%= comment.user.email %> <%= time_ago_in_words(comment.created_at) %> ago</i></sup>
-<h4><%= comment.body %></h4>
-<% if user_signed_in? %>
-<% if comment.user_id == current_user.id %>
-<%= link_to "Edit", edit_idea_comment_path(comment.idea, comment) %>
-<%= link_to "Delete", idea_comment_path(comment.idea, comment), method: :delete, data: { confirm: "Confirm Deletion?"} %>
-<% end %>
-<% end %>
+  <div class="well" id="<%= dom_id(comment) %>">
+
+  <hr>
+    <h4><%= comment.body %></h4>
+    <% if user_signed_in? %>
+    <% if comment.user_id == current_user.id %>
+    <%= link_to "Edit", edit_idea_comment_path(comment.idea, comment) %>
+    <%= link_to "Delete", idea_comment_path(comment.idea, comment), method: :delete,
+                                                                    remote: true %>
+    <% end %>
+    <% end %>
+  </div>

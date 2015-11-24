@@ -7,22 +7,65 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
+  <nav class="navbar navbar-default">
+
+      <div class="container">
+
+        <div class="navbar-header">
+           <a class="navbar-brand" href="<%= root_path %>"><i class='glyphicon glyphicon-home'></i>Idea Factory</a>
+
+        </div>
+
+        <ul class="nav navbar-nav">
+          <li><%= link_to "Sign Up", new_user_registration_path %></li>
 
 
-  <% if user_signed_in? %>
-  <%= "Hello #{current_user.email}"  %>
-  <li><%= link_to "Sign Out", destroy_user_session_path, method: :delete %></li>
-  <% else %>
-  <li><%= link_to "Sign Up", new_user_registration_path %></li>
-  <li><%= link_to "Log In", new_user_session_path %></li>
-<% end %>
 
-  <div class="container" align="right"> <%= link_to 'New Idea', new_idea_path %></div>
+          <% if user_signed_in? %>
+          <li><%= link_to "Sign Out", destroy_user_session_path, method: :delete %></li>
+          <% else %>
+          <li><%= link_to "Log In", new_user_session_path %></li>
+          <% end %>
+        </ul>
+
+          <ul class="nav navbar-nav navbar-right">
+
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"></a>
+              <ul class="dropdown-menu" role="menu">
+
+
+
+
+
+
+              </ul>
+
+            </li>
+
+
+            <% if user_signed_in? %>
+          <li><%= "Hello #{current_user.email}"  %></li>
+              <li><%= link_to "New Idea", new_idea_path %></li>
+            <% end %>
+
+          </ul>
+
+
+      </div>
+
+  </nav>
+
+<div class="container">
+
+
 
   <p class="notice"><%= notice %></p>
   <p class="alert"><%= alert %></p>
 
 <%= yield %>
+</div>
+</div>
 
 </body>
 </html>
